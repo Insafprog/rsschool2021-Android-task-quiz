@@ -21,6 +21,9 @@ class QuestionViewModel: ViewModel() {
         thisQuestion = question
     }
 
+    val getQuestions
+        get() = questions
+
     val getIndex: Int
         get() = index
 
@@ -29,4 +32,7 @@ class QuestionViewModel: ViewModel() {
 
     val question
         get() = thisQuestion
+
+    val result
+        get() = questions.filter { it.thisAnswer==it.answer }.count()
 }

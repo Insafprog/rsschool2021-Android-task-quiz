@@ -1,17 +1,13 @@
 package com.rsschool.quiz
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
-import androidx.lifecycle.Observer
 import com.rsschool.quiz.databinding.FragmentQuizBinding
 
 class QuestionFragment: Fragment() {
@@ -82,7 +78,7 @@ class QuestionFragment: Fragment() {
             index--
             model.setIndex(index)
             activity?.supportFragmentManager?.commit {
-                replace(R.id.fragmentContainerView, QuestionFragment(), index.toString())
+                replace(R.id.fragmentContainerView, QuestionFragment())
             }
         }
 
@@ -90,25 +86,25 @@ class QuestionFragment: Fragment() {
             index--
             model.setIndex(index)
             activity?.supportFragmentManager?.commit {
-                replace(R.id.fragmentContainerView, QuestionFragment(), index.toString())
+                replace(R.id.fragmentContainerView, QuestionFragment())
             }
         }
 
         binding.nextButton.setOnClickListener{
             if (index == model.questionsCount - 1)
                 activity?.supportFragmentManager?.commit {
-                    replace(R.id.fragmentContainerView, QuestionFragment(), index.toString())
+                    replace(R.id.fragmentContainerView, SubmitFragment())
                 }
             else {
                 index++
                 model.setIndex(index)
                 activity?.supportFragmentManager?.commit {
-                    replace(R.id.fragmentContainerView, QuestionFragment(), index.toString())
+                    replace(R.id.fragmentContainerView, QuestionFragment())
                 }
             }
         }
 
-        binding.radioGroup.setOnCheckedChangeListener { radioGroup, i ->
+        binding.radioGroup.setOnCheckedChangeListener { _, i ->
             binding.nextButton.isEnabled = true
             val qu = model.question
             when(i){

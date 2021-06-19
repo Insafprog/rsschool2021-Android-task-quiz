@@ -9,7 +9,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         super.onCreate(savedInstanceState)
 
         supportFragmentManager.commit{
-            replace(R.id.fragmentContainerView, QuestionFragment(), "0")
+            replace(R.id.fragmentContainerView, QuestionFragment())
         }
     }
 }
