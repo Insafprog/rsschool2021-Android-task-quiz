@@ -35,4 +35,12 @@ class QuestionViewModel: ViewModel() {
 
     val result
         get() = questions.filter { it.thisAnswer==it.answer }.count()
+
+    override fun toString(): String {
+        var result = "Your result: $result out of $questionsCount"
+        for ((i, quest) in getQuestions.withIndex()) {
+            result += "\n\n${i + 1}) $quest"
+        }
+        return result
+    }
 }

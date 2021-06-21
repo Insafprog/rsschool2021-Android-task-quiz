@@ -39,23 +39,9 @@ class SubmitFragment : Fragment() {
         binding.resultView.text = "Your result: ${model.result} out of ${model.questionsCount}"
 
         binding.shareButton.setOnClickListener {
-            var resultText = "Your result: ${ model.result } out of ${ model.questionsCount }"
-            for ((i, quest) in model.getQuestions.withIndex()) {
-                val yourAnswer = when(quest.thisAnswer){
-                    0 -> quest.option0
-                    1 -> quest.option1
-                    2 -> quest.option2
-                    3 -> quest.option3
-                    else -> quest.option4
-                }
-                resultText += "\n\n" + """
-                    $i) ${quest.quest}
-                    Your answer: $yourAnswer
-                """.trimIndent()
-            }
             val resultIntent = Intent().apply {
                 action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT, resultText)
+                putExtra(Intent.EXTRA_TEXT, model.toString())
                 putExtra(Intent.EXTRA_SUBJECT, "Quiz results")
                 type = "text/plain"
             }
