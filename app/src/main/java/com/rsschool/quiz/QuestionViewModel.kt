@@ -1,18 +1,18 @@
 package com.rsschool.quiz
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class QuestionViewModel: ViewModel() {
     private val questions = Questions.questions.toMutableList()
 
-    private var index: Int = 0
+    private var index: Int = Question.currentIndex
 
     private var thisQuestion = questions[index]
 
 
     fun setIndex(index: Int) {
         this.index = index
+        Question.currentIndex = index
         thisQuestion = questions[index]
     }
 
@@ -20,9 +20,6 @@ class QuestionViewModel: ViewModel() {
         questions[index] = question
         thisQuestion = question
     }
-
-    val getQuestions
-        get() = questions
 
     val getIndex: Int
         get() = index
@@ -38,7 +35,7 @@ class QuestionViewModel: ViewModel() {
 
     override fun toString(): String {
         var result = "Your result: $result out of $questionsCount"
-        for ((i, quest) in getQuestions.withIndex()) {
+        for ((i, quest) in questions.withIndex()) {
             result += "\n\n${i + 1}) $quest"
         }
         return result

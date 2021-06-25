@@ -20,4 +20,8 @@ data class Question(
         }
         return "$quest\nYour answer: $yourAnswer"
     }
+
+    companion object {
+        var currentIndex = 0
+    }
 }
